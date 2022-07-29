@@ -356,6 +356,7 @@ class BytecodeTableRow(TableRow):
     is_code: Expression
     value: Expression
 
+
 @dataclass(frozen=True)
 class RWTableRow(TableRow):
     rw_counter: Expression
