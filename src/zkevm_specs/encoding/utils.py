@@ -12,7 +12,7 @@ def is_circuit_code(func):
 
     return wrapper
 
-
+# -> is for annotation
 def u256_to_u8s(x: U256) -> Tuple[U8, ...]:
     assert 0 <= x < 2**256, "expect x is unsigned 256 bits"
     return tuple(U8((x >> 8 * i) & 0xFF) for i in range(32))
@@ -39,3 +39,4 @@ def u8s_to_u64s(xs: Sequence[U8]) -> Tuple[U64, ...]:
         for j in range(8):
             A[i] += xs[j + 8 * i] * (2 ** (8 * j))
     return tuple(A)
+

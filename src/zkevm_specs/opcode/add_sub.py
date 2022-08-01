@@ -2,8 +2,9 @@ from typing import Sequence
 
 from ..encoding import U8, is_circuit_code
 
-
+# you want to prove that a + x = y
 def add_sub_common(
+    # sequence is for serialization
     a8s: Sequence[U8],
     x8s: Sequence[U8],
     y8s: Sequence[U8],
@@ -18,9 +19,11 @@ def add_sub_common(
     assert len(carry32) == 32
 
     # Case 0:
+    # check the first bit
     assert a8s[0] + x8s[0] == y8s[0] + carry32[0] * 256
 
     # Case 1 to 31:
+    # check bit 2 to 32
     for i in range(1, 32):
         assert carry32[i] * (carry32[i] - 1) == 0, "carry should be 0 or 1"
         assert a8s[i] + x8s[i] + carry32[i - 1] == y8s[i] + carry32[i] * 256
